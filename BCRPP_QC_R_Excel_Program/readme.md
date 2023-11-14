@@ -8,6 +8,7 @@ The code uses several packages which may need to be installed. The code to insta
 
 ``` r
 #install.packages("tidyverse")
+```
 
 Remove the "#" and run these lines.
 
