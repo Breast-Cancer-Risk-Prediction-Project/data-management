@@ -154,7 +154,7 @@ change_case_match <- function(data_dict ,df){
   } else{
     print("Cases for some variables in data will be changed to: ")
     print(non_matching_names$var_name)
-    for (i in 1:length(non_matching_names[,1])){
+    for (i in 1:length(non_matching_names$var_name)){
       match_position <- match( tolower(non_matching_names$var_name[i] ),  tolower(names(df)  ) ) 
       if (!is.na(match_position )){
         names(df)[match_position] <- non_matching_names$var_name[i]
@@ -730,9 +730,9 @@ range.warnings <- function(data,params){
     comment2 = paste0(comment_symbol, '.data.warning')
     
     data <- data %>% mutate(!!comment2 := ifelse( !!variable_symbol < eval(rlang::parse_expr(as.character( params$`Valid Value Lower` ) )) 
-                                                  & !(!!variable_symbol) %in% c(777,888)|
+                                                  & !(!!variable_symbol) %in% c(666,777,888)|
                                                     !!variable_symbol > eval( rlang::parse_expr ( as.character (params$`Valid Value Higher`)))
-                                                  & !(!!variable_symbol) %in% c(777,888) ,
+                                                  & !(!!variable_symbol) %in% c(666, 777,888) ,
                                                   ifelse(is.na(data[[comment2]]), params$Comments, paste(data[[comment2]], ' | ', params$Comments)), 
                                                   data[[comment2]]) )
     return(data)
@@ -1367,6 +1367,10 @@ core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, study_name
 ########## PLEASE RUN THE CODE BELOW IF YOU ARE USING BOX TO STORE DATA #################################
 
 ##############################################################
+
+# Reading core data
+# put the name of the data Box file ID inside the quotation marks
+core.data <- box_read("")
 
 core.data.dict <- box_read(869084480019) %>% filter(Category == "Core")
 
