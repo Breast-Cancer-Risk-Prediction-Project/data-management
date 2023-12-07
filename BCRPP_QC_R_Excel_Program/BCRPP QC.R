@@ -26,6 +26,11 @@ library(openxlsx)
 # initializing Box authentication process
 box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYKLd65aQpZGrq9x4QVUNnn5C8qqm")
 
+
+#####
+# RUN ALL LINES OF CODE BELOW TILL LINE 1303 
+############
+
 # reading in an excel sheet containing file IDs
 # for risk factor, core and survival data
 #file_ids_data <- box_read(996100787501)
@@ -225,7 +230,7 @@ warnings.summary<- function(df){
 }
 
 
-core_summary_report <- function(core.dict, qc_df, study_name ){
+core_summary_report <- function(core.dict, qc_df, study_name, path_output ){
   full_summ <- function(qc_df){
     changes_summary <-changes.summary(qc_df)
     print(changes_summary)
@@ -251,12 +256,12 @@ core_summary_report <- function(core.dict, qc_df, study_name ){
                   "Screening History" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Screening History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ())  
   
   
-  writexl::write_xlsx(sheets_xl, path = paste0("./", study_name, " BCRPP Core QC Report.xlsx") )
+  writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Core QC Report.xlsx") )
   
 }
 
 
-incident_summary_report <- function(incident.dict, qc_df, study_name ){
+incident_summary_report <- function(incident.dict, qc_df, study_name, path_output ){
   full_summ <- function(qc_df){
     changes_summary <-changes.summary(qc_df)
     print(changes_summary)
@@ -275,7 +280,7 @@ incident_summary_report <- function(incident.dict, qc_df, study_name ){
                     "Pathology" = qc_df %>% select(contains(incident.dict %>% filter(`Sub-Category` == "Pathology") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ() )
                     
                     
-  writexl::write_xlsx(sheets_xl, path = paste0("./", study_name, " BCRPP Incident Cases QC Report.xlsx") )
+  writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Incident Cases QC Report.xlsx") )
                     
 }
 
@@ -1349,7 +1354,7 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 # MAKING REPORT 
 
 # Populate "study_name" with name of Study
-core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, study_name = "")
+core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
 
 ### INCIDENT CASES QC 
 # BEING DEVELOPED
@@ -1393,5 +1398,5 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 # MAKING REPORT 
 
 # Populate "study_name" with name of Study
-core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, study_name = "")
+core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
 
