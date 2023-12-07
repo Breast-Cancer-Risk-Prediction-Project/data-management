@@ -1393,7 +1393,7 @@ core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
 
 # applying warning rules to data that already has changes made to core data
 core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
-                            data = core.data)
+                            data = core.data.changes)
 
 # MAKING REPORT 
 
