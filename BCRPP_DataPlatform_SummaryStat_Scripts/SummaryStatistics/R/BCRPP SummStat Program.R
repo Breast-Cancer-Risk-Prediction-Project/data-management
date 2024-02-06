@@ -86,55 +86,54 @@ READ.DATA= function(data, data_dict){
   
   if (all( c("birth_year", "agemenarche", "bmi") %in% names(data) )   ) { 
     data <- data %>% 
-      mutate( case_when( birth_year >= 1900 & birth_year <= 1909 ~ "1900_1909",
-                         birth_year >= 1910 & birth_year <= 1919 ~ "1910_1919",
-                         birth_year >= 1930 & birth_year <= 1939 ~"1930_1939",
-                         birth_year >= 1940 & birth_year <= 1949 ~"1940_1949",
-                         birth_year >= 1950 & birth_year <= 1959 ~"1950_1959",
-                         birth_year >= 1960 & birth_year <= 1969 ~"1960_1969",
-                         birth_year >= 1970 & birth_year <= 1979 ~"1970_1979",
-                         birth_year >= 1980 & birth_year <= 1989 ~"1980_1989",
-                         birth_year >= 1990 & birth_year <= 1999 ~"1990_1999",
-                         birth_year >= 2000 & birth_year <= 2010 ~"2000_2009",
-                         .default = as.character(birth_year)) ) %>%
+      mutate(birth_year = case_when( birth_year >= 1900 & birth_year <= 1909 ~ "1900_1909",
+                                     birth_year >= 1910 & birth_year <= 1919 ~ "1910_1919",
+                                     birth_year >= 1930 & birth_year <= 1939 ~"1930_1939",
+                                     birth_year >= 1940 & birth_year <= 1949 ~"1940_1949",
+                                     birth_year >= 1950 & birth_year <= 1959 ~"1950_1959",
+                                     birth_year >= 1960 & birth_year <= 1969 ~"1960_1969",
+                                     birth_year >= 1970 & birth_year <= 1979 ~"1970_1979",
+                                     birth_year >= 1980 & birth_year <= 1989 ~"1980_1989",
+                                     birth_year >= 1990 & birth_year <= 1999 ~"1990_1999",
+                                     birth_year >= 2000 & birth_year <= 2010 ~"2000_2009",
+                                     .default = as.character(birth_year)) ) %>%
       
-      mutate(case_when( agemenarche <=12 ~"LE_12",
-                        agemenarche == 13 ~ "13",
-                        agemenarche == 14 ~"14",
-                        agemenarche == 15 ~"15",
-                        agemenarche == 777 ~ "777",
-                        agemenarche == 888 ~"DK",
-                      !agemenarche %in% c("LE_12", "13", "14", "15","777" ,"DK",13,14,15,777) ~ "GT_15",
-                      .default = as.character(agemenarche)) ) %>%
+      mutate(agemenarche = case_when( agemenarche <=12 ~"LE_12",
+                                      agemenarche == 13 ~ "13",
+                                      agemenarche == 14 ~"14",
+                                      agemenarche == 15 ~"15",
+                                      agemenarche == 777 ~ "777",
+                                      agemenarche == 888 ~"DK",
+                                      !agemenarche %in% c("LE_12", "13", "14", "15","777" ,"DK",13,14,15,777) ~ "GT_15",
+                                      .default = as.character(agemenarche)) ) %>%
 
       
-      mutate( case_when( bmi < 18.5 ~"<18.5",
-                         bmi>= 18.5 & bmi < 24.9 ~ "18.5_<24.9",
-                         bmi>= 24.9 & bmi < 29.9 ~"24.9_<29.9",
-                         bmi>= 29.9 & bmi < 34.9 ~ "29.9_<34.9",
-                         bmi>= 34.9 & bmi < 39.9 ~ "34.9_<39.9",
-                         bmi>= 39.9 & bmi != 888 ~ ">=39.9",
-                         bmi == 888 ~ "DK",
-                         .default = as.character(bmi) ) )
+      mutate(bmi= case_when( bmi < 18.5 ~"<18.5",
+                             bmi>= 18.5 & bmi < 24.9 ~ "18.5_<24.9",
+                             bmi>= 24.9 & bmi < 29.9 ~"24.9_<29.9",
+                             bmi>= 29.9 & bmi < 34.9 ~ "29.9_<34.9",
+                             bmi>= 34.9 & bmi < 39.9 ~ "34.9_<39.9",
+                             bmi>= 39.9 & bmi != 888 ~ ">=39.9",
+                             bmi == 888 ~ "DK",
+                             .default = as.character(bmi) ) )
   }
   
 
   if (c("dxdate_primary1") %in% names(data) ){
     data <- data %>% 
-      mutate(case_when(dxdate_primary1 >= 1900 &dxdate_primary1 <= 1909 ~ "1900_1909",
-                       dxdate_primary1 >= 1910 & dxdate_primary1 <= 1919 ~"1910_1919",
-                       dxdate_primary1 >= 1920 & dxdate_primary1 <= 1929 ~"1920_1929",
-                       dxdate_primary1 >= 1930 & dxdate_primary1 <= 1939 ~ "1930_1939",
-                       dxdate_primary1 >= 1940 & dxdate_primary1 <= 1949 ~ "1940_1949",
-                       dxdate_primary1 >= 1950 & dxdate_primary1 <= 1959 ~"1950_1959",
-                       dxdate_primary1 >= 1960 & dxdate_primary1 <= 1969 ~ "1960_1969",
-                       dxdate_primary1 >= 1970 & dxdate_primary1 <= 1979 ~ "1970_1979",
-                       dxdate_primary1 >= 1980 & dxdate_primary1 <= 1989 ~ "1980_1989",
-                       dxdate_primary1 >= 1990 & dxdate_primary1 <= 1999 ~ "1990_1999",
-                       dxdate_primary1 >= 2000 & dxdate_primary1 <= 2009 ~ "2000_2009",
-                       dxdate_primary1 >= 2010 & dxdate_primary1 <= 2019 ~ "2010_2019",
-                       .default = as.character(dxdate_primary1) ))
-  }
+      mutate(dxdate_primary1 = case_when(dxdate_primary1 >= 1900 &dxdate_primary1 <= 1909 ~ "1900_1909",
+                                         dxdate_primary1 >= 1910 & dxdate_primary1 <= 1919 ~"1910_1919",
+                                         dxdate_primary1 >= 1920 & dxdate_primary1 <= 1929 ~"1920_1929",
+                                         dxdate_primary1 >= 1930 & dxdate_primary1 <= 1939 ~ "1930_1939",
+                                         dxdate_primary1 >= 1940 & dxdate_primary1 <= 1949 ~ "1940_1949",
+                                         dxdate_primary1 >= 1950 & dxdate_primary1 <= 1959 ~"1950_1959",
+                                         dxdate_primary1 >= 1960 & dxdate_primary1 <= 1969 ~ "1960_1969",
+                                         dxdate_primary1 >= 1970 & dxdate_primary1 <= 1979 ~ "1970_1979",
+                                         dxdate_primary1 >= 1980 & dxdate_primary1 <= 1989 ~ "1980_1989",
+                                         dxdate_primary1 >= 1990 & dxdate_primary1 <= 1999 ~ "1990_1999",
+                                         dxdate_primary1 >= 2000 & dxdate_primary1 <= 2009 ~ "2000_2009",
+                                         dxdate_primary1 >= 2010 & dxdate_primary1 <= 2019 ~ "2010_2019",
+                                         .default = as.character(dxdate_primary1) )) }
   
   
   
