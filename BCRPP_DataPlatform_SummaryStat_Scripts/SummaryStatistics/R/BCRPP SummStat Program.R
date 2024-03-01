@@ -384,7 +384,7 @@ MAKE.SUMMSTAT = function(data, data_dict){
   df
 }
 
-
+######## FOR NCI studies that use BOX ############
 
 # Reading core and incident data dictionaries
 core.data.dict <- box_read(1031372696258) %>%
@@ -476,6 +476,60 @@ plco_bcrpp_incident_df <- merge(x = plco_bcrpp_core_df %>% select(id,race, ethni
 
 
 plco_bcrpp_incident_summ <- MAKE.SUMMSTAT(data = plco_bcrpp_incident_df, incident.data.dict)
+
+
+#######################
+# FOR STUDIES THAT DO NOT USE BOX
+#######################
+#set working directory
+# enter the entire path name for the folder that contains the data here 
+#within the quotation marks
+setwd("")
+
+# Reading core data dictionary
+data.dict <- read_csv("./Data Dictionary/BCRP_DataDictionary.csv")
+
+core.data.dict <- data.dict %>% 
+  filter(Category == "Core")  
+
+# Reading incident data dictionary
+incident.data.dict <- data.dict %>% 
+  filter(Category == "Incident Breast Cancer")
+
+
+# GENERATIONS SUMMARY STATISTICS
+# GS CORE SUMMSTAT
+# enter name of file in quotes
+generations_bcrpp_core_df <- read.csv("")
+
+generations_bcrpp_core_df$study <- "GS"
+generations_core_summ <- MAKE.SUMMSTAT(data = generations_bcrpp_core_df, core.data.dict)
+
+# GENERATIONS INCIDENT SUMMSTAT
+# enter name of file within the quotes
+generations_bcrpp_incident_df <- read.csv("")
+
+# adding the study name
+generations_bcrpp_incident_df$study <- "GS"
+
+#adding id, race, ethnicity and age variables to the incidence df
+generations_bcrpp_incident_df <- merge(x= generations_bcrpp_core_df %>% select(id, race, ethnicity, age), y= generations_bcrpp_incident_df, by = "id")
+
+generations_bcrpp_incident_summ <- MAKE.SUMMSTAT(data = generations_bcrpp_incident_df, incident.data.dict)
+
+
+
+############
+# WRITING FILES BACK TO BOX
+## FOR STUDIES THAT USE BOX
+##################
+
+#GENERATIONS STUDY
+# adding CORE Summary Statistics
+
+box_write(object = generations_bcrpp_core_summ, dir_id = "251162485433", file_name = "BCRPP_GS_CORE_summaries.csv")
+
+box_write(object = generations_bcrpp_incident_summ, dir_id = "251162485433",file_name = "BCRPP_GS_BRCA_summaries.csv")
 
 
 
