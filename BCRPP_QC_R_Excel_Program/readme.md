@@ -28,9 +28,9 @@ Remove the "#" and run these lines.
 
 1. Run through lines of the code upto line 1323. If your data is not on Box, then skip lines 5, 6, and 27.
 
-2. In line 1303, set the working directory to the current folder containing the code, the QC rule folders, and the folder containing the data dictionary.
+2. In line 1308, set the working directory to the current folder containing the code, the QC rule folders, and the folder containing the data dictionary.
 
-3. In line 1307, set a path to the output within the quotes.
+3. In line 1312, set a path to the output within the quotes.
 
 4. In line 1365, enter the full path to the data within the quotes. If the data is not a csv file, run line 1366 instead with the full path of the file.
 
