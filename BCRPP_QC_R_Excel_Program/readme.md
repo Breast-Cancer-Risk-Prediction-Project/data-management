@@ -16,10 +16,22 @@ Remove the "#" and run these lines.
 
 1. Run through all lines of the code. If your data is not on Box, then skip lines 5, 6, and 27.
 
+2. In line 1308, set the working directory to the current folder containing the code, the QC rule folders, and the folder containing the data dictionary.
+
+3. In line 1312, set a path to the output within the quotes.
+
+4. In line 1329, enter the full path to the data within the quotes. If the data is not a csv file, run line 1330 instead with the full path of the file.
+
+5. In line 1357, enter the name of the Study you're generating a QC report for. The final report will be saved in your output folder with the name "[Study Name] BCRPP Core QC Report.xslsx"
+
+### Steps to generate Incident Breast Cancer QC report:
+
+1. Run through lines of the code upto line 1323. If your data is not on Box, then skip lines 5, 6, and 27.
+
 2. In line 1303, set the working directory to the current folder containing the code, the QC rule folders, and the folder containing the data dictionary.
 
 3. In line 1307, set a path to the output within the quotes.
 
-4. In line 1324, enter the full path to the data within the quotes. If the data is not a csv file, run line 1325 instead with the full path of the file.
+4. In line 1365, enter the full path to the data within the quotes. If the data is not a csv file, run line 1366 instead with the full path of the file.
 
-5. In line 1352, enter the name of the Study you're generating a QC report for. The final report will be saved in your output folder with the name "[Study Name] BCRPP Core QC Report.xslsx"
+5. In line 1403, enter the name of the Study you're generating a QC report for. The final report will be saved in your output folder with the name "[Study Name] BCRPP Incident Cases QC Report.xslsx"
