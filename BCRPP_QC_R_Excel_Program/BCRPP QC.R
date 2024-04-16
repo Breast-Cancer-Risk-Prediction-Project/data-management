@@ -1359,12 +1359,48 @@ core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_outpu
 ### INCIDENT CASES QC 
 # BEING DEVELOPED
 
-#incident.data <- read.csv()
+# Reading incident cases data
+# put the name of the data file inside the quotation marks
+# include the file extension as well
+incident.data <- read.csv(" ")
+#incident.data <- read_excel("")
 
-#bcrpp.incident.correction.rules <- read_excel("./Incident QC Rules/BCRPP Incident Core Changes.xlsx")
 
-#bcrpp.incident.warning.rules <- read_excel("./Incident QC Rules/BCRPP Incident Core Warnings.xlsx")
+# making sure core data variable name cases match cases in BCRPP data dictionary
+incident.data <- change_case_match(data_dict = incident.data.dict,
+                               df = incident.data)
 
+# making sure only cases present in data
+incident.data <- incident.data %>%
+  filter(invasive_primary1 != 888)
+
+#Reading Incident Breast Cancer Rules
+
+bcrpp.incident.correction.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Correction Rules.xlsx")
+
+# apply bcrpp incident correction rules to data 
+incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
+                                data = incident.data)
+
+bcrpp.incident.warning.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Warning Rules.xlsx")
+
+
+
+
+# applying warning rules to data that already has changes made to incident data
+incident.data.qc <- warnings_qc(params =bcrpp.incident.warning.rules,
+                            data = incident.data.changes)
+
+
+
+
+# MAKING REPORT 
+
+# Populate "study_name" with name of Study
+incident_summary_report(incident.dict = incident.data.dict,
+                        qc_df = incident.data.qc, 
+                        path_output = path_to_output,
+                        study_name = "")
 
 
 #################################################################################################################
@@ -1399,4 +1435,45 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 
 # Populate "study_name" with name of Study
 core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
+
+
+#### INCIDENT BREAST CANCER CASES
+
+# Reading incident data
+# put the name of the data Box file ID inside the quotation marks
+incident.data <- box_read("")
+
+incident.data.dict <- box_read(869084480019) %>% 
+  filter(Category == "Incident Breast Cancer")
+
+
+# making sure core data variable name cases match cases in BCRPP data dictionary
+incident.data <- change_case_match(data_dict = incident.data.dict,
+                                   df = incident.data)
+
+# making sure only cases present in data
+incident.data <- incident.data %>%
+  filter(invasive_primary1 != 888 )
+
+#Reading Incident Breast Cancer Rules from Box
+bcrpp.incident.correction.rules <- box_read(1502708742484)
+
+# apply bcrpp incident correction rules to data 
+incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
+                                    data = incident.data)
+
+#Reading Incident Breast Cancer Flag Rules from Box
+bcrpp.incident.warning.rules <- box_read(1502646289948)
+
+
+# applying warning rules to data that already has changes made to incident data
+incident.data.qc <- warnings_qc(params =bcrpp.incident.warning.rules,
+                                data = incident.data.changes)
+
+# MAKING REPORT 
+# Populate "study_name" with name of Study
+incident_summary_report(incident.dict = incident.data.dict,
+                        qc_df = incident.data.qc,
+                        path_output = path_to_output,
+                        study_name = "")
 
