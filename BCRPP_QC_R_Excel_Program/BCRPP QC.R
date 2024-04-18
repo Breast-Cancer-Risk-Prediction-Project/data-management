@@ -1370,9 +1370,6 @@ incident.data <- read.csv(" ")
 incident.data <- change_case_match(data_dict = incident.data.dict,
                                df = incident.data)
 
-# making sure only cases present in data
-incident.data <- incident.data %>%
-  filter(invasive_primary1 != 888)
 
 #Reading Incident Breast Cancer Rules
 
@@ -1451,9 +1448,6 @@ incident.data.dict <- box_read(869084480019) %>%
 incident.data <- change_case_match(data_dict = incident.data.dict,
                                    df = incident.data)
 
-# making sure only cases present in data
-incident.data <- incident.data %>%
-  filter(invasive_primary1 != 888 )
 
 #Reading Incident Breast Cancer Rules from Box
 bcrpp.incident.correction.rules <- box_read(1502708742484)
