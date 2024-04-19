@@ -1312,14 +1312,13 @@ setwd("")
 path_to_output <- ""
 
 # Reading core data dictionary
-data.dict <- read_csv("./Data Dictionary/BCRP_DataDictionary.csv")
+core.data.dict <- read_excel("./Data Dictionary/BCRPP_DataDictionary_for_QC_v1.xlsx",
+                           sheet = "CORE")
 
-core.data.dict <- data.dict %>% 
-  filter(Category == "Core")  
 
 # Reading incident data dictionary
-incident.data.dict <- data.dict %>% 
-  filter(Category == "Incident Breast Cancer")
+incident.data.dict <- read_excel("./Data Dictionary/BCRPP_DataDictionary_for_QC_v1.xlsx",
+                                 sheet = "INCIDENT BREAST CANCER")
 
   
 # Reading core data
@@ -1339,10 +1338,9 @@ incident.data <- read.csv(" ")
 # lastfup is created in core data 
 # if lastfup is present in core data
 if(!"lastfup" %in% names(core.data)){
-  core.data <- core.data %>%
-    mutate(lastfup = ifelse(subject_id %in% incident.data$subject_id,
-                            incident.data$lastfup,
-                            NA))
+  core.data <- rbind(core.data %>% filter(!subject_id %in% incident.data$subject_id) %>% mutate(lastfup = NA),
+                     core.data %>% filter(subject_id %in% incident.data$subject_id) %>% 
+                       mutate(lastfup = if_else(subject_id == incident.data$subject_id, incident.data$lastfup, NA)    ))
 }
 
 
