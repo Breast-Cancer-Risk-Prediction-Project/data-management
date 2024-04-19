@@ -1322,13 +1322,32 @@ incident.data.dict <- data.dict %>%
   filter(Category == "Incident Breast Cancer")
 
   
-## CORE DATA QC
 # Reading core data
 # put the name of the data file inside the quotation marks
 #include the file extension as well
 core.data <- read.csv("")
 #core.data <- read_excel("")
 
+
+# Reading incident cases data
+# put the name of the data file inside the quotation marks
+# include the file extension as well
+incident.data <- read.csv(" ")
+#incident.data <- read_excel("")
+
+
+# lastfup is created in core data 
+# if lastfup is present in core data
+if(!"lastfup" %in% names(core.data)){
+  core.data <- core.data %>%
+    mutate(lastfup = ifelse(subject_id %in% incident.data$subject_id,
+                            incident.data$lastfup,
+                            NA))
+}
+
+
+
+## CORE DATA QC
 
 # making sure core data variable name cases match cases in BCRPP data dictionary
 core.data <- change_case_match(data_dict = core.data.dict,
@@ -1358,12 +1377,6 @@ core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_outpu
 
 ### INCIDENT CASES QC 
 # BEING DEVELOPED
-
-# Reading incident cases data
-# put the name of the data file inside the quotation marks
-# include the file extension as well
-incident.data <- read.csv(" ")
-#incident.data <- read_excel("")
 
 
 # making sure core data variable name cases match cases in BCRPP data dictionary
@@ -1405,12 +1418,34 @@ incident_summary_report(incident.dict = incident.data.dict,
 ########## PLEASE RUN THE CODE BELOW IF YOU ARE USING BOX TO STORE DATA #################################
 
 ##############################################################
+# Reading core data dictionary
+core.data.dict <- box_read(869084480019) %>% filter(Category == "Core")
+
+
+# reading incident data dictionary
+incident.data.dict <- box_read(869084480019) %>% 
+  filter(Category == "Incident Breast Cancer")
+
 
 # Reading core data
 # put the name of the data Box file ID inside the quotation marks
 core.data <- box_read("")
 
-core.data.dict <- box_read(869084480019) %>% filter(Category == "Core")
+
+# Reading incident data
+# put the name of the data Box file ID inside the quotation marks
+incident.data <- box_read("")
+
+# lastfup is created in core data 
+# if lastfup is present in core data
+if(!"lastfup" %in% names(core.data)){
+  core.data <- core.data %>%
+    mutate(lastfup = ifelse(subject_id %in% incident.data$subject_id,
+                            incident.data$lastfup,
+                            NA))
+}
+
+
 
 # reading correction rules from Box
 bcrpp.core.correction.rules <- box_read(996117218706)
@@ -1435,14 +1470,6 @@ core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_outpu
 
 
 #### INCIDENT BREAST CANCER CASES
-
-# Reading incident data
-# put the name of the data Box file ID inside the quotation marks
-incident.data <- box_read("")
-
-incident.data.dict <- box_read(869084480019) %>% 
-  filter(Category == "Incident Breast Cancer")
-
 
 # making sure core data variable name cases match cases in BCRPP data dictionary
 incident.data <- change_case_match(data_dict = incident.data.dict,
