@@ -245,15 +245,15 @@ core_summary_report <- function(core.dict, qc_df, study_name, path_output ){
   
   sheets_xl <- list("QC Data" = qc_df,
                     "Missing Variables" = qc_df %>% list_missing_columns(data_dict = core.dict) %>% as.data.frame(),
-                    "ID" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Identification/Dates") %>% select(`Variable Name`) %>% unlist() %>% as.character() ), -starts_with("Comments")) %>% full_summ(),
-                    "Demographics" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Demographics") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                    "Anthropometry" =qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Anthropometry") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                    "Alcohol and Tobacco" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Alcohol and Tobacco") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                    "Personal and Family History" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Personal and family Health History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                    "Reproductive History" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Reproductive History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                    "Hormone Replacement Therapy" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Hormone Replacement Therapy") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                  "Physical Activity" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Physical Activity") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
-                  "Screening History" = qc_df %>% select(contains(core.dict %>% filter(`Sub-Category` == "Screening History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ())  
+                    "ID" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Identification/Dates") %>% select(`Variable Name`) %>% unlist() %>% as.character() ), -starts_with("Comments")) %>% full_summ(),
+                    "Demographics" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Demographics") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                    "Anthropometry" =qc_df %>% select(contains(core.dict %>% filter(`Category` == "Anthropometry") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                    "Alcohol and Tobacco" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Alcohol and Tobacco") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                    "Personal and Family History" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Personal and family Health History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                    "Reproductive History" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Reproductive History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                    "Hormone Replacement Therapy" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Hormone Replacement Therapy") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                  "Physical Activity" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Physical Activity") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ(),
+                  "Screening History" = qc_df %>% select(contains(core.dict %>% filter(`Category` == "Screening History") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ())  
   
   
   writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Core QC Report.xlsx") )
@@ -276,8 +276,8 @@ incident_summary_report <- function(incident.dict, qc_df, study_name, path_outpu
   
   sheets_xl <- list("QC Data" = qc_df,
                     "Missing Variables" = qc_df %>% list_missing_columns(data_dict = incident.dict) %>% as.data.frame(),
-                    "Diagnostic" = qc_df %>% select(contains(incident.dict %>% filter(`Sub-Category` == "Diagnostic") %>% select(`Variable Name`) %>% unlist() %>% as.character() ), -starts_with("Comments")) %>% full_summ(),
-                    "Pathology" = qc_df %>% select(contains(incident.dict %>% filter(`Sub-Category` == "Pathology") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ() )
+                    "Diagnostic" = qc_df %>% select(contains(incident.dict %>% filter(Category == "Diagnostic") %>% select(`Variable Name`) %>% unlist() %>% as.character() ), -starts_with("Comments")) %>% full_summ(),
+                    "Pathology" = qc_df %>% select(contains(incident.dict %>% filter(`Category` == "Pathology") %>% select(`Variable Name`) %>% unlist() %>% as.character()), -starts_with("Comments")) %>% full_summ() )
                     
                     
   writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Incident Cases QC Report.xlsx") )
