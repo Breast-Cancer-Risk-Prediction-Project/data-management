@@ -1,6 +1,6 @@
 # BCRPP QC R and Excel Program
 
-**Note: This program is currently under development. The excel rules for the core data and incident cases are still in process. The program is meant to be used for testing purposes only and not send final QC reports.**
+**Note: This is the BCRPP data QC program for the BCRPP data dictionary version 1**.
 
 ## Instructions:
 
