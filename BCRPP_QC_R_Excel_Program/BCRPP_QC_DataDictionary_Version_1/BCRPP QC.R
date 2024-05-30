@@ -1351,14 +1351,14 @@ if(!"lastfup" %in% names(core.data)){
 core.data <- change_case_match(data_dict = core.data.dict,
                                df = core.data)
 
-# reading Core correction rules 
+# reading Core correction rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Correction%20Rules.xlsx
 bcrpp.core.correction.rules <- read_excel("./Core QC Rules/BCRPP Correction Rules.xlsx")
 
 # apply bcrpp correction rules to data 
 core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
                                 data = core.data)
 
-# reading Core warning rules
+# reading Core warning rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Warning%20Rules.xlsx
 bcrpp.core.warning.rules <- read_excel("./Core QC Rules/BCRPP Warning Rules.xlsx")
 
 
@@ -1370,25 +1370,26 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 
 # MAKING REPORT 
 
-# Populate "study_name" with name of Study
+# Populate "study_name" with name of Study and specify output path
 core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
 
 ### INCIDENT CASES QC 
-# BEING DEVELOPED
-
 
 # making sure core data variable name cases match cases in BCRPP data dictionary
 incident.data <- change_case_match(data_dict = incident.data.dict,
                                df = incident.data)
 
 
-#Reading Incident Breast Cancer Rules
+#Reading Incident Breast Cancer correction Rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Correction%20Rules.xlsx
 
 bcrpp.incident.correction.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Correction Rules.xlsx")
 
 # apply bcrpp incident correction rules to data 
 incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
                                 data = incident.data)
+
+
+#Reading Incident Breast Cancer warning Rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Warning%20Rules.xlsx
 
 bcrpp.incident.warning.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Warning Rules.xlsx")
 
