@@ -1,3 +1,7 @@
+###########################################
+# INSTALL, IF NECESSARY, AND LOAD LIBRARIES  
+###########################################
+
 #install.packages('tidyverse')
 library(tidyverse)
 # install.packages("rlang")
@@ -27,13 +31,10 @@ library(openxlsx)
 box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYKLd65aQpZGrq9x4QVUNnn5C8qqm")
 
 
-#####
-# RUN ALL LINES OF CODE BELOW TILL LINE 1303 
 ############
-
-# reading in an excel sheet containing file IDs
-# for risk factor, core and survival data
-#file_ids_data <- box_read(996100787501)
+## PART 1 - LOAD QC FUNCTIONS
+## RUN ALL LINES OF CODE WITHOUT MODIFICATION, UPTO PART 2 (LINE XXXX 
+############
 
 
 
@@ -41,11 +42,9 @@ box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYK
 # These functions are tools used in the program to arrange data in appropriate formats/ arrange the output.
 ######################################################
 
-# This function unlists values from strings
-# for example, if a variable has valid values of 0 and 1 and this is written in the rules excel as 0, 1,
-# R will read the entire cell as a string, i.e, "0,1"
-# this function will separate 0 and 1 from the string and add them to a list
-# helps in preliminary QC checks where more than one value may be valid for a variable
+# This function unlists values from strings. For example, if the valid values of a variable are 0 and 1, and this is written in the Excel rules as 0, 1,
+# R will read the entire cell as a string, i.e, "0,1".  This function will separate 0 and 1 from the string and add them to a list, which is necessary for 
+# the preliminary QC checks.
 
 
 get_range_values<- function( values_vector) {
@@ -1297,14 +1296,13 @@ warnings_qc <- function(params, data){
 }
 
 
-#################################################################################################################
-################################################################################################
-########## PLEASE RUN THE CODE BELOW IF YOU ARE NOT USING BOX TO STORE DATA #################################
 
-##############################################################
-#set working directory
-# enter the entire path name for the folder that contains the data here 
-#within the quotation marks
+
+####################### IF YOU ARE NOT USING BOX TO STORE DATA, PLEASE RUN THE CODE BELOW #######################
+###################### PLEASE READ THE COMMENTS TO SEE WHERE THE CODE WILL NEED YOUR INPUT ######################
+
+# set working directory
+# enter the entire path name for the folder that contains the data here within the quotation marks
 setwd("")
 
 # enter the path where the QC report should be outputted
