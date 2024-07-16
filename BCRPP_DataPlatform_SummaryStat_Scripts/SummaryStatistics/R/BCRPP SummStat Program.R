@@ -38,6 +38,7 @@ change_case_match <- function(data_dict ,df){
   
 }
 
+#nyuwhs_bcrpp_core_df <-change_case_match(core.data.dict, nyuwhs_bcrpp_core_df)
 
 
 add_missing_columns = function(df, data_dict) {
@@ -57,7 +58,7 @@ add_missing_columns = function(df, data_dict) {
   
 }
 
-
+nyuwhs_bcrpp_core_df <-add_missing_columns(nyuwhs_bcrpp_core_df, core.data.dict)
 
 #[3a] Function to read box IDs
 READ.DATA= function(data, data_dict){
@@ -400,6 +401,7 @@ cps3_core_file_id <- "961945416499"
 nhs_core_file_id <- "1245072725343" #NHS
 nhs2_core_file_id <- "1234617009726" #NHS2
 plco_core_file_id <- "1288862420965" # PLCO
+nyuwhs_core_file_id <- "1517028680971" # NYUWHS
 
 
 # READING INCIDENT FILE IDS
@@ -407,6 +409,9 @@ cps2_incident_file_id <- "961945474656"
 plco_incident_file_id <- "1288860429050"
 nhs_incident_file_id <- "1245060603521"
 nhs2_incident_file_id <- "1234617300601"
+nyuwhs_incident_file_id <- "1527841259259"
+
+
 
 
 # MAKING CORE SUMMSTAT FILES
@@ -427,6 +432,19 @@ nhs_core_summ <- MAKE.SUMMSTAT(data = nhs_core_df, core.data.dict)
 plco_bcrpp_core_df <- box_read(plco_core_file_id)
 plco_bcrpp_core_df$study <- "PLCO"
 plco_core_summ <- MAKE.SUMMSTAT(data = plco_bcrpp_core_df, core.data.dict)
+
+
+#NYUWHS CORE
+nyuwhs_bcrpp_core_df <- box_read(nyuwhs_core_file_id)
+nyuwhs_bcrpp_core_df$study <- "NYUWHS"
+names(nyuwhs_bcrpp_core_df)
+nyuwhs_core_summ <- MAKE.SUMMSTAT(data = nyuwhs_core_file_id, core.data.dict)
+
+
+
+
+
+
 
 #MAKING INCIDENT SUMMSTAT FILES
 
@@ -476,6 +494,8 @@ plco_bcrpp_incident_df <- merge(x = plco_bcrpp_core_df %>% select(id,race, ethni
 
 
 plco_bcrpp_incident_summ <- MAKE.SUMMSTAT(data = plco_bcrpp_incident_df, incident.data.dict)
+
+
 
 
 #######################
