@@ -1,10 +1,10 @@
 # BCRPP QC R and Excel Program
 
-**Note: This is the BCRPP data QC program for the BCRPP data dictionary version 1**.
+**Note: This is the BCRPP data QC program for the BCRPP data dictionary version 1 (https://nih.app.box.com/file/1558407318830)**.
 
 ## Instructions:
 
-The code uses several packages which may need to be installed. The code to install the required packages is provided in comments (followed by a "#"). For example:
+The code uses several R packages which may need to be installed. The code to install the required packages is provided in comments (followed by a "#"). For example:
 
 ``` r
 #install.packages("tidyverse")
