@@ -1,3 +1,10 @@
+# BCRPP QC For Data Dictionary V1.2 #
+# The QC for Data Dictionary V1.2 is still under development finalizing the QC rules.
+# Any errors encountered when running this QC should be reported to Tom Ahearn at bcrpp@mail.nih.gov
+
+
+
+
 ###########################################
 # INSTALL, IF NECESSARY, AND LOAD LIBRARIES  
 ###########################################
@@ -26,6 +33,8 @@ library(ICD10gm)
 library(readxl)
 #install.packages("openxlsx")
 library(openxlsx)
+#install.packages("httr")
+library(httr)
 
 # initializing Box authentication process
 box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYKLd65aQpZGrq9x4QVUNnn5C8qqm")
@@ -1303,15 +1312,29 @@ warnings_qc <- function(params, data){
 
 # set working directory
 # enter the entire path name for the folder that contains the data here within the quotation marks
-setwd("")
+setwd("C:/Users/ahearntu/Documents/temp")
 
 # enter the path where the QC report should be outputted
 # within the quotation marks
 path_to_output <- ""
 
 # Reading core data dictionary
-core.data.dict <- read_excel("./Data Dictionary/BCRPP_DataDictionary_for_QC_v1.xlsx",
-                           sheet = "CORE")
+github_core_data_dictionary_V1.2 <- "https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Data%20Dictionary/BCRPP_DataDictionary_V2_2024.xlsx"
+
+#download.file(github_core_data_dictionary_V1.2, destfile = temp.core.data.dict.V1.2 <- tempfile(fileext = ".xlsx"), mode = "wb")
+
+
+data <- read.xlsx(temp.core.data.dict.V1.2)
+
+
+sheets <- excel_sheets(temp.core.data.dict.V1.2)
+data_list <- lapply(sheets, function(sheet) read_excel(temp.core.data.dict.V1.2, sheet = sheet))
+
+# Name the list elements with sheet names
+names(data_list) <- sheets
+
+
+core.data.dict <- read_excel(temp.core.data.dict.V1.2, sheet = "CORE")
 
 
 # Reading incident data dictionary
@@ -1411,17 +1434,16 @@ incident_summary_report(incident.dict = incident.data.dict,
 
 
 #################################################################################################################
-################################################################################################
-########## PLEASE RUN THE CODE BELOW IF YOU ARE USING BOX TO STORE DATA #################################
+#################################################################################################################
+################ PLEASE RUN THE CODE BELOW ONLY IF YOU ARE USING BOX TO STORE DATA ##############################
 
 ##############################################################
 # Reading core data dictionary
-core.data.dict <- box_read(869084480019) %>% filter(Category == "Core")
+core.data.dict <- box_read(1586484066599) %>% filter(Category == "Core")
 
 
 # reading incident data dictionary
-incident.data.dict <- box_read(869084480019) %>% 
-  filter(Category == "Incident Breast Cancer")
+incident.data.dict <- box_read(1586484066599) %>% filter(Category == "Incident Breast Cancer")
 
 
 # Reading core data
@@ -1444,11 +1466,11 @@ if(!"lastfup" %in% names(core.data)){
 
 
 
-# reading correction rules from Box
-bcrpp.core.correction.rules <- box_read(996117218706)
+# reading correction rules from Box for V1.2
+bcrpp.core.correction.rules <- box_read(1590968517481)
 
-# reading warning rules from Box
-bcrpp.core.warning.rules <- box_read(996103073482)
+# reading warning rules from Box  for V1.2
+bcrpp.core.warning.rules <- box_read(1590968512681)
 
 
 # apply bcrpp correction rules to data 
@@ -1473,15 +1495,15 @@ incident.data <- change_case_match(data_dict = incident.data.dict,
                                    df = incident.data)
 
 
-#Reading Incident Breast Cancer Rules from Box
-bcrpp.incident.correction.rules <- box_read(1502708742484)
+#Reading Incident Breast Cancer Rules from Box for V1.2
+bcrpp.incident.correction.rules <- box_read(1590968498281)
 
 # apply bcrpp incident correction rules to data 
 incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
                                     data = incident.data)
 
-#Reading Incident Breast Cancer Flag Rules from Box
-bcrpp.incident.warning.rules <- box_read(1502646289948)
+#Reading Incident Breast Cancer Flag Rules from Box for V1.2
+bcrpp.incident.warning.rules <- box_read(1590968495881)
 
 
 # applying warning rules to data that already has changes made to incident data
