@@ -38,7 +38,7 @@ change_case_match <- function(data_dict ,df){
   
 }
 
-#nyuwhs_bcrpp_core_df <-change_case_match(core.data.dict, nyuwhs_bcrpp_core_df)
+
 
 
 add_missing_columns = function(df, data_dict) {
@@ -58,7 +58,7 @@ add_missing_columns = function(df, data_dict) {
   
 }
 
-nyuwhs_bcrpp_core_df <-add_missing_columns(nyuwhs_bcrpp_core_df, core.data.dict)
+
 
 #[3a] Function to read box IDs
 READ.DATA= function(data, data_dict){
