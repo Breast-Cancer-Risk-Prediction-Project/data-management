@@ -1,0 +1,440 @@
+Category	Sub-Category	Variable Name	Label	Variable Type	Coding
+Core	Identification/Dates	subject_id	Individual ID combining study and person info	Character	"Study ID + ""_"" + person ID (e.g.: XX_XXX)"
+Core	Identification/Dates	id	Individual ID (original from study)	Character	Study specific person ID
+Core	Identification/Dates	record_date	Date of data/sample collection	Date	"dd/mm/yyyy
+08/08/8000 - Missing/Unknown"
+Core	Identification/Dates	qcycle	Questionnaire cycle (repeated measures)	Categorical	"0 - Baseline
+1 + - Follow up cycle #
+888 - Missing"
+Core	Identification/Dates	baseline	Baseline record indicator	Categorical	"0 - Record taken subsequent to baseline, 1 - Record taken at baseline"
+Core	Identification/Dates	lastfollowup	Last follow up indicator	Categorical	"0 - Record date is prior to last follow up, 1 - Record date is date of last follow up"
+Core	Demographics	birth_year	Birth year	Date (yyyy)	"yyyy, 888- Missing/Unknown"
+Core	Demographics	sex	Sex	Categorical	"0 - Female, 1 - Male"
+Core	Demographics	age	Age at record_date   	Integer	Age in years
+Core	Demographics	race	Race (US OMB categories)	Categorical	"1 - White
+2 - Black/African American
+3 - Asian
+4 - Native Hawaiin/ Pacific Islander
+5 - American Indian/Alaska Native
+6 - Other, including multiracial
+888 - Missing"
+Core	Demographics	ethnicity	Ethnicity (US OMB categories)	Categorical	"0 - Non-Hispanic/Non-Latino
+1 - Hispanic/Latino
+888 - Missing"
+Core	Demographics	education	Highest level education attained	Categorical	"1 - Less than high school
+2 - High School
+3 - Some college education
+4 - University (degree)
+5 - Graduate school (some or degree)
+888 - Unknown/Missing"
+Core	Demographics	AJAncestry	Ashkenazi Jewish Ancestry	Categorical	"0 - No
+1 - Yes
+888 - Missing"
+Core	Anthropometry	height	Height (cm)	Decimal	"Height in cm
+888 - Missing"
+Core	Anthropometry	weight	Weight (kg) 	Decimal	"Weight in kg
+888 - Missing"
+Core	Anthropometry	bmi	Body Mass Index (BMI) (kg/m2) 	Decimal	"BMI in kg/m2
+888 - Missing"
+Core	Anthropometry	waist	Waist Circumference (cm) 	Decimal	"Waist circumference in cm
+888 - Missing"
+Core	Anthropometry	hip	Hip Circumference (cm)	Decimal	"Hip circumference in cm
+888 - Missing"
+Core	Anthropometry	whr	Waist to hip ratio	Decimal	"Waist-to-hip ratio
+888 - Missing"
+Core	Anthropometry	bmi_earlyadult	Body Mass Index (BMI) (kg/m2) age 18-24	Decimal	"BMI in kg/m2
+888 - Missing"
+Core	Alcohol and Tobacco	alcohol_status	Drinking status	Categorical	"1 - Current
+2 - Former 
+3 - Ever (unknown current or former)
+4 - Never
+888 - Missing/Unknown"
+Core	Alcohol and Tobacco	alcohol_init	Age of initiation of regular alcohol drinking	Integer	"Age in years
+777 - Nondrinker
+888 - Missing"
+Core	Alcohol and Tobacco	alcohol_amt	Current alcohol intake (grams/day)	Decimal	"Value
+888 - Missing"
+Core	Alcohol and Tobacco	alcohol_stop	Age of cessation of regular alcohol drinking	Integer	"Age in years
+666 - N/A (no stop date)
+777 - Nondrinker
+888 - Missing"
+Core	Alcohol and Tobacco	alcohol_dur	Duration of regular alcohol drinking in years	Decimal	"Years of alcohol use
+777 - Nondrinker
+888 - Missing"
+Core	Alcohol and Tobacco	smoking_init	Age of initiation of smoking	Integer	"Age in years
+777 - Nonsmoker
+888 - Missing"
+Core	Alcohol and Tobacco	smoking_amt	Current amount smoked (cig/day)	Decimal	"Value
+888 - Missing"
+Core	Alcohol and Tobacco	smoking_dur	Duration of smoking in years	Decimal	"Years of regular smoking
+777 - Nonsmoker
+888 - Missing/Unknown"
+Core	Alcohol and Tobacco	smoking_status	Smoking status	Categorical	"1 - Current
+2 - Former 
+3 - Ever (unknown current or former)
+4 - Never
+888 - Missing/Unknown"
+Core	Alcohol and Tobacco	smoking_stop	Age of cessation of smoking	Integer	"Age in years
+666 - N/A (current smoker)
+777 - Nonsmoker
+888 - Missing/Unknown"
+Core	Personal and Family Health History	fhx_fdr_brca	Family history of breast cancer (first degree relative)	Categorical	"0 - No
+1 - Yes
+888 - Missing"
+Core	Personal and Family Health History	Biopsies_yesno	"Ever had a breast biopsy, excluding biopsies leading to diagnosis of cancer in cases"	Categorical	"0- No
+1- Yes
+888- Missing"
+Core	Personal and Family Health History	Biopsies_number	"Number of breast biopsies, excluding biopsies leading to diagnosis of breast cancer in cases"	Integer	"number
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_history	History of benign breast disease	Categorical	"0 - No
+1 - Yes
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_number	Number of benign breast disease diagnoses	Integer	"number 0-4
+5 - more than 4
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_type1	Type of benign breast disease for first BBD diagnosis	Categorical	"1 - non-proliferative disease
+2 - proliferative disease without atypia
+3 - atypical hyperplasia
+777 - NA
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_year1	Year of diagnosis of first benign breast disease diagnosis 	integer	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_type2	Type of benign breast disease for second BBD diagnosis	Categorical	"1 - non-proliferative disease
+2 - proliferative disease without atypia
+3 - atypical hyperplasia
+777 - NA
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_year2	Year of diagnosis of second benign breast disease diagnosis	Date	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_type3	Type of benign breast disease for third BBD diagnosis	Categorical	"1 - non-proliferative disease
+2 - proliferative disease without atypia
+3 - atypical hyperplasia
+777 - NA
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_year3	Year of diagnosis of third benign breast disease diagnosis	Date	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_type4	Type of benign breast disease for fourth BBD diagnosis	Categorical	"1 - non-proliferative disease
+2 - proliferative disease without atypia
+3 - atypical hyperplasia
+777 - NA
+888 - Missing/Unknown"
+Core	Personal and Family Health History	BBD_year4	Year of diagnosis of fourth benign breast disease diagnosis	Date	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Core	Reproductive History	agemenarche	Age at menarche	Decimal	"Age in years
+777 - Never had a period
+888 - Missing/Unknown"
+Core	Reproductive History	parous	Parous or not	Categorical	"0 - Non-parous
+1 - Parous
+888 - Missing"
+Core	Reproductive History	age_preg1	Age at first pregnancy (full-term)	Decimal	"Age in years
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	parity	Number of pregnancies (full-term)	Integer	"0 + 
+888 - Missing/Unknown"
+Core	Reproductive History	age_preg2	Age at second pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<2 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg3	Age at third pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<3 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg4	Age at fourth pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<4 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg5	Age fifth first pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<5 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg6	Age sixth first pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<6 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg7	Age at seventh pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<7 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg8	Age at eighth pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<8 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg9	Age at ninth pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<9 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	age_preg10	Age at tenth pregnancy (full-term)	Decimal	"Age in years
+666- N/A (<10 pregnancies)
+777 - Nonparous
+888 - Missing/Unknwon"
+Core	Reproductive History	breastfeed	Ever breastfeed	Categorical	"0 - Never Breastfed
+1 - Ever Breastfed
+777- Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur	Cumulative lifetime duration of breastfeeding (months) 	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b1	Duration of breastfeeding (months) for first birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b2	Duration of breastfeeding (months) for second birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b3	Duration of breastfeeding (months) for third birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b4	Duration of breastfeeding (months) for fourth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b5	Duration of breastfeeding (months) for fifth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b6	Duration of breastfeeding (months) for sixth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b7	Duration of breastfeeding (months) for seventh birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b8	Duration of breastfeeding (months) for eighth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b9	Duration of breastfeeding (months) for ninth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	breastfeed_dur_b10	Duration of breastfeeding (months) for tenth birth	Decimal	"Time in months
+666 - NA (didn't breastfeed)
+777 - Nonparous
+888 - Missing/Unknown"
+Core	Reproductive History	ocuse_ever	Ever use of oral contraceptives	Categorical	"0 - Never used oral contraceptives
+1 - Ever used oral contraceptives
+888 - Missing/Unknown"
+Core	Reproductive History	ocuse_current	Current OC use (at record_date)	Categorical	"0 - No
+1 - Yes
+888 - Missing/Unknown"
+Core	Reproductive History	ocuse_dur	Lifetime duration of oral contraceptive use  in months	Decimal	"Time in months
+777 - NA (never user)
+888 - Missing/Unknown"
+Core	Reproductive History	ocuse_start	Age at first use of oral contraceptive	Decimal	"Age in years 
+777 - NA (never user) 
+888 - Missing/Unknown"
+Core	Reproductive History	ocuse_stop	Age at last use of oral contraceptive	Decimal	"Age in years (if stopped before reference date)
+666 - Current user
+777 - NA (never user) 
+888 - Missing/Unknown"
+Core	Reproductive History	othcontracep_ever	Use of other types of hormonal contraceptives 	Categorical	"0 - Never
+1 - Ever
+888 - Missing/Unknown"
+Core	Reproductive History	othcontracep_current	Current use of other types of hormonal contraceptives	Categorical	"0 - No
+1 - Yes
+888 - Missing/Unknown"
+Core	Reproductive History	meno_status	Menopausal status	Categorical	"1 - Postmenopausal
+2 - Premenopuasal
+3 - Perimenopausal/other
+888 - Missing/Unknown"
+Core	Reproductive History	meno_age	Age at menopause in years	Decimal	"Age in years
+777 - Premenopausal at questionnaire
+888 - Missing/Unknown"
+Core	Reproductive History	meno_reason	Reason for menopause	Categorical	"1 - Natural
+2 - Surgical
+3 - Radiation/Chemotherapy induced
+4 - Medication
+5 - Artificial/Induced (no detail)
+777 - NA (premenopausal)
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrtuse	Use of any hormone replacement therapy	Categorical	"0 - Never used hormonal replacement therapy
+1 - Current use
+2 - Former use
+3 - Ever used (unknown current or former) 
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrt_dur	Lifetime duration of hormonal replacement therapy in months	Decimal	"Time in months
+666 - NA (premenopausal)
+777 - Never user
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrtuse_ep	Use of E+P hormone replacement therapy	Categorical	"0 - Never used hormonal replacement therapy
+1 - Current use
+2 - Former use
+3 - Ever used (unknown current or former) 
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrtep_dur	Lifetime duration of E+P hormonal replacement therapy in months	Decimal	"Time in months
+666 - NA (premenopausal)
+777 - Never user
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrtuse_eonly	Use of E only hormone replacement therapy	Categorical	"0 - Never used hormonal replacement therapy
+1 - Current use
+2 - Former use
+3 - Ever used (unknown current or former) 
+888 - Missing/Unknown"
+Core	Hormone Replacement Therapy	hrteonly_dur	Lifetime duration of E only hormonal replacement therapy in months	Decimal	"Time in months
+666 - NA (premenopausal)
+777 - Never user
+888 - Missing/Unknown"
+Core	Physical Activity	pa_mets	Leisure time physical activity (MET hrs/wk)	Decimal	"MET hrs/wk
+888 - Missing/Unknown"
+Core	Physical Activity	pa_pct	Leisure time physical activity (percentile)	Integer	"Percentile
+888 - Missing/Unknown"
+Core	Screening History	screen_ever	Ever had a screening mammogram	Categorical	"0 - Never
+1 - Ever
+888 - Missing/Unknown"
+Core	Screening History	screen_start	Age at first screening mammogram	Decimal	"Age in years
+777 - Never screened
+888 - Unknown/Missing"
+Core	Screening History	lastscreen_year	Year of last screening mammogram	Integer	"YYYY
+777 - Never screened
+888 - Unknown/Missing"
+Mammographic density	Mammographic density	Mam_Qdate	Date mammogram questionnairre data collected	Date	"dd/mm/yyyy
+08/08/8000 - Missing/Unknown"
+Mammographic density	Mammographic density	MamYear	Year of mammogram	Date	"yyyy
+8888 - Missing/Unknown"
+Mammographic density	Mammographic density	MamAge	Age at mammogram	Decimal	"Age in years
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	MamBMI	BMI at time of mammogram	Decimal	"BMI in kg/m2
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	MamMenoStat	Menopausal status at mammogram	Categorical	"1 - Premenopausal
+2 - Postmenopausal
+3 - Perimenopausal
+888 - Missing/Unknown "
+Mammographic density	Mammographic density	MamHRTCurrent	Current use of HRT (or within 6 months prior to mammogram)	Categorical	"0 - No (or duration <3 mo)
+1 - Yes (duration >3 mo) 
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	MamType	Digital vs Analogue	Categorical	"1 - Digital
+2 - Analogue
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	MamProcess	"Raw (""For Processing"") vs Processed (""For Presentation"")"	Categorical	"1 - Raw
+2 - Processed
+777 - NA
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	ThreshPkg	Thresholding package used	Categorical	"1 - Cumulus
+2 - Other
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	ThreshPkg_detail	"Thresholding package used if ""other"""	Character	"Free text
+777 - NA
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	VolDenSoftware	Volumetric density software used	Categorical	"1 - Volpara
+2 - Quantra
+3 - SXA
+4 - Other
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	VolDenSoftware_detail	"Volumetric density software used if ""other"""	Character	"Free text
+777 - NA
+888 - Missing/Unknown"
+Mammographic density	Mammographic density	PDArea_A	Percent density from thresholding method on corresponding image	"0-100, 777=NA, 888=DK"	numerical with decimals
+Mammographic density	Mammographic density	DenArea_A	Absolute dense area from mammogram	"cm2, 777=NA, 888=DK"	numerical with decimals
+Mammographic density	Mammographic density	NonDArea_A	Absolute nondense area from mammogram (Total area minus dense area)	"cm2, 777=NA, 888=DK"	numerical with decimals
+Mammographic density	Mammographic density	MamDensity	BIRADS density category (left & right average)	Categorical	"1 - Fatty
+2 - Scattered areas
+3 - Heterogenously dense
+4 - Extremely dense
+888 - Missing/Unknown"
+Incident Breast Cancer	Censoring	lastfup	Year od last follow up	Integer	"yyyy	
+7777- NA	
+8888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	dxdate_primary1	Year of diagnosis of 1st primary breast cancer	Integer	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	detection_primary1	Mode of detection of 1st primary breast cancer	Categorical	"1 - Screen-detected
+2 - Non-screen detected
+888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	detection_detail_primary1	Details on mammogram detection	Categorical	"1 - Mammography
+2 - Sonography
+3 - Self-detected by palpation
+4 - Medical exam
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	invasive_primary1	Invasive or insitu for 1st primary breast cancer	Categorical	"1 - Invasive
+2 - Insitu
+888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	dxdate_primary2	Year of diagnosis of 2nd primary breast cancer	Integer	"yyyy
+7777- NA
+8888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	detection_primary2	Mode of detection of 2nd primary breast cancer	Categorical	"1 - Screen-detected
+2 - Non-screen detected
+888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	detection_detail_primary2	Details on mammogram detection	Categorical	"1 - Mammography
+2 - Sonography
+3 - Self-detected by palpation
+4 - Medical exam
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Diagnostic	invasive_primary2	Invasive or insitu breast cancer for 2nd primary breast cancer	Categorical	"1 - Invasive
+2 - Insitu
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	stage_primary1	TNM stage for first primary tumor	Categorical	"0 - Insitu
+1,2,3,4
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	grade_primary1	Histopathological grade for first primary tumor	Categorical	"1 - Well-differentiated
+2 - Moderately differentiated
+3 - Poorly/Undifferentiated
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	size_primary1	Tumor size (maximum diameter in mm)	Decimal	"Diameter in mm
+777 - NA
+888= Missing/Unknown"
+Incident Breast Cancer 	Pathology	sizecat_primary1	"Tumor size of first primary, categorized"	Categorical	"1 - >0 to <=2cm
+2 - >2cm and <=5cm
+3 - >5cm
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	er_primary1	ER status of first primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	pr_primary1	PR status of first primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	her2_primary1	HER2 status of first primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	ki67_primary1	Ki67 expression (% positive cells) for first primary tumor	Integer	"Percent (0-100)
+777- NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	ki67cat_primary1	"Ki67 expression level for first primary tumor, dichotomous (include only if continuous unavailable)"	Categorical	"0 - Low
+1 - High 
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	stage_primary2	TNM stage for second primary tumor	Categorical	"0,1,2,3,4
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	grade_primary2	Histopathological grade for second primary tumor	Categorical	"1 - Well-differentiated
+2 - Moderately differentiated
+3 - Poorly/Undifferentiated
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	size_primary2	Tumor size second primary (maximum diameter in mm)	Decimal	"Diameter in mm
+777 - NA
+888= Missing/Unknown"
+Incident Breast Cancer 	Pathology	sizecat_primary2	"Tumor size of second primary, categorized"	Categorical	"1 - <0 to <=2cm
+2 - >2cm and <=5cm
+3 - >5cm
+777 - NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	er_primary2	ER status of second primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	pr_primary2	PR status of second primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	her2_primary1	HER2 status of second primary tumor	Categorical	"0 - Negative
+1 - Positive
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	ki67_primary2	Ki67 expression (% positive cells) for second primary tumor	Integer	"Percent (0-100)
+777- NA
+888 - Missing/Unknown"
+Incident Breast Cancer 	Pathology	ki67cat_primary2	"Ki67 expression level for second primary tumor, dichotomous, (include only if continuous is unavailable)"	Categorical	"0 - Low
+1 - High 
+777 - NA
+888 - Missing/Unknown"
