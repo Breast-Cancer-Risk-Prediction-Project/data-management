@@ -10,7 +10,7 @@ Core	Identification/Dates	baseline	Baseline record indicator	Categorical	"0 - Re
 Core	Identification/Dates	lastfollowup	Last follow up indicator	Categorical	"0 - Record date is prior to last follow up, 1 - Record date is date of last follow up"
 Core	Demographics	birth_year	Birth year	Date (yyyy)	"yyyy, 888- Missing/Unknown"
 Core	Demographics	sex	Sex	Categorical	"0 - Female, 1 - Male"
-Core	Demographics	age	Age at record_date   	Integer	Age in years
+Core	Demographics	age	Age at record_date   	Integer	Age in years
 Core	Demographics	race	Race (US OMB categories)	Categorical	"1 - White
 2 - Black/African American
 3 - Asian
@@ -342,99 +342,99 @@ Mammographic density	Mammographic density	MamDensity	BIRADS density category (le
 Incident Breast Cancer	Censoring	lastfup	Year od last follow up	Integer	"yyyy	
 7777- NA	
 8888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	dxdate_primary1	Year of diagnosis of 1st primary breast cancer	Integer	"yyyy
+Incident Breast Cancer	Diagnostic	dxdate_primary1	Year of diagnosis of 1st primary breast cancer	Integer	"yyyy
 7777- NA
 8888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	detection_primary1	Mode of detection of 1st primary breast cancer	Categorical	"1 - Screen-detected
+Incident Breast Cancer	Diagnostic	detection_primary1	Mode of detection of 1st primary breast cancer	Categorical	"1 - Screen-detected
 2 - Non-screen detected
 888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	detection_detail_primary1	Details on mammogram detection	Categorical	"1 - Mammography
+Incident Breast Cancer	Diagnostic	detection_detail_primary1	Details on mammogram detection	Categorical	"1 - Mammography
 2 - Sonography
 3 - Self-detected by palpation
 4 - Medical exam
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	invasive_primary1	Invasive or insitu for 1st primary breast cancer	Categorical	"1 - Invasive
+Incident Breast Cancer	Diagnostic	invasive_primary1	Invasive or insitu for 1st primary breast cancer	Categorical	"1 - Invasive
 2 - Insitu
 888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	dxdate_primary2	Year of diagnosis of 2nd primary breast cancer	Integer	"yyyy
+Incident Breast Cancer	Diagnostic	dxdate_primary2	Year of diagnosis of 2nd primary breast cancer	Integer	"yyyy
 7777- NA
 8888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	detection_primary2	Mode of detection of 2nd primary breast cancer	Categorical	"1 - Screen-detected
+Incident Breast Cancer	Diagnostic	detection_primary2	Mode of detection of 2nd primary breast cancer	Categorical	"1 - Screen-detected
 2 - Non-screen detected
 888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	detection_detail_primary2	Details on mammogram detection	Categorical	"1 - Mammography
+Incident Breast Cancer	Diagnostic	detection_detail_primary2	Details on mammogram detection	Categorical	"1 - Mammography
 2 - Sonography
 3 - Self-detected by palpation
 4 - Medical exam
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Diagnostic	invasive_primary2	Invasive or insitu breast cancer for 2nd primary breast cancer	Categorical	"1 - Invasive
+Incident Breast Cancer	Diagnostic	invasive_primary2	Invasive or insitu breast cancer for 2nd primary breast cancer	Categorical	"1 - Invasive
 2 - Insitu
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	stage_primary1	TNM stage for first primary tumor	Categorical	"0 - Insitu
+Incident Breast Cancer	Pathology	stage_primary1	TNM stage for first primary tumor	Categorical	"0 - Insitu
 1,2,3,4
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	grade_primary1	Histopathological grade for first primary tumor	Categorical	"1 - Well-differentiated
+Incident Breast Cancer	Pathology	grade_primary1	Histopathological grade for first primary tumor	Categorical	"1 - Well-differentiated
 2 - Moderately differentiated
 3 - Poorly/Undifferentiated
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	size_primary1	Tumor size (maximum diameter in mm)	Decimal	"Diameter in mm
+Incident Breast Cancer	Pathology	size_primary1	Tumor size (maximum diameter in mm)	Decimal	"Diameter in mm
 777 - NA
 888= Missing/Unknown"
-Incident Breast Cancer 	Pathology	sizecat_primary1	"Tumor size of first primary, categorized"	Categorical	"1 - >0 to <=2cm
+Incident Breast Cancer	Pathology	sizecat_primary1	"Tumor size of first primary, categorized"	Categorical	"1 - >0 to <=2cm
 2 - >2cm and <=5cm
 3 - >5cm
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	er_primary1	ER status of first primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	er_primary1	ER status of first primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	pr_primary1	PR status of first primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	pr_primary1	PR status of first primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	her2_primary1	HER2 status of first primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	her2_primary1	HER2 status of first primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	ki67_primary1	Ki67 expression (% positive cells) for first primary tumor	Integer	"Percent (0-100)
+Incident Breast Cancer	Pathology	ki67_primary1	Ki67 expression (% positive cells) for first primary tumor	Integer	"Percent (0-100)
 777- NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	ki67cat_primary1	"Ki67 expression level for first primary tumor, dichotomous (include only if continuous unavailable)"	Categorical	"0 - Low
+Incident Breast Cancer	Pathology	ki67cat_primary1	"Ki67 expression level for first primary tumor, dichotomous (include only if continuous unavailable)"	Categorical	"0 - Low
 1 - High 
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	stage_primary2	TNM stage for second primary tumor	Categorical	"0,1,2,3,4
+Incident Breast Cancer	Pathology	stage_primary2	TNM stage for second primary tumor	Categorical	"0,1,2,3,4
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	grade_primary2	Histopathological grade for second primary tumor	Categorical	"1 - Well-differentiated
+Incident Breast Cancer	Pathology	grade_primary2	Histopathological grade for second primary tumor	Categorical	"1 - Well-differentiated
 2 - Moderately differentiated
 3 - Poorly/Undifferentiated
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	size_primary2	Tumor size second primary (maximum diameter in mm)	Decimal	"Diameter in mm
+Incident Breast Cancer	Pathology	size_primary2	Tumor size second primary (maximum diameter in mm)	Decimal	"Diameter in mm
 777 - NA
 888= Missing/Unknown"
-Incident Breast Cancer 	Pathology	sizecat_primary2	"Tumor size of second primary, categorized"	Categorical	"1 - <0 to <=2cm
+Incident Breast Cancer	Pathology	sizecat_primary2	"Tumor size of second primary, categorized"	Categorical	"1 - <0 to <=2cm
 2 - >2cm and <=5cm
 3 - >5cm
 777 - NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	er_primary2	ER status of second primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	er_primary2	ER status of second primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	pr_primary2	PR status of second primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	pr_primary2	PR status of second primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	her2_primary1	HER2 status of second primary tumor	Categorical	"0 - Negative
+Incident Breast Cancer	Pathology	her2_primary1	HER2 status of second primary tumor	Categorical	"0 - Negative
 1 - Positive
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	ki67_primary2	Ki67 expression (% positive cells) for second primary tumor	Integer	"Percent (0-100)
+Incident Breast Cancer	Pathology	ki67_primary2	Ki67 expression (% positive cells) for second primary tumor	Integer	"Percent (0-100)
 777- NA
 888 - Missing/Unknown"
-Incident Breast Cancer 	Pathology	ki67cat_primary2	"Ki67 expression level for second primary tumor, dichotomous, (include only if continuous is unavailable)"	Categorical	"0 - Low
+Incident Breast Cancer	Pathology	ki67cat_primary2	"Ki67 expression level for second primary tumor, dichotomous, (include only if continuous is unavailable)"	Categorical	"0 - Low
 1 - High 
 777 - NA
 888 - Missing/Unknown"
