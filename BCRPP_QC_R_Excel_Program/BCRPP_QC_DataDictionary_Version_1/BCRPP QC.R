@@ -7,7 +7,7 @@ library(tidyverse)
 # install.packages("rlang")
 library(rlang)
 # install.packages('boxr')
-library(boxr)
+#library(boxr)
 # install.packages('glue') 
 library(glue)
 # install.packages('stringr')
@@ -27,13 +27,9 @@ library(readxl)
 #install.packages("openxlsx")
 library(openxlsx)
 
-# initializing Box authentication process
-box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYKLd65aQpZGrq9x4QVUNnn5C8qqm")
-
 
 ############
-## PART 1 - LOAD QC FUNCTIONS
-## RUN ALL LINES OF CODE WITHOUT MODIFICATION, UPTO PART 2 (LINE XXXX 
+## RUN ALL LINES OF CODE WITHOUT MODIFICATION UPTO LINE 1292 - NO EDITS TO CODE ARE NEEDED
 ############
 
 
@@ -282,11 +278,6 @@ incident_summary_report <- function(incident.dict, qc_df, study_name, path_outpu
   writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Incident Cases QC Report.xlsx") )
                     
 }
-
-
-#################################################### PART 1 #############################################################
-#################################################### MODIFYING DATA TO PREVENT 777/888 inconsistency errors #############
-#########################################################################################################################
 
 
 ########################### QC Change Functions ###################
@@ -710,9 +701,9 @@ changes_qc <- function(rules,data){
 
 #box_write(df.changes,dir_id = 150319090948, file_name =  'Data with QC.csv', description = "This version of the data file has changes made to the data based on the QC program and comment next to rows where changes have been made.")
 
-#################################################### PART 2 ##############################################################
-#################################################### ADDING FLAGS FOR ROWS THAT REQUIRE MORE VERIFICATION ###################
-#############################################################################################################################
+########################################################## ##############################################################
+################################## ADDING FLAGS FOR ROWS THAT REQUIRE MORE VERIFICATION #################################
+##########################################################################################################################
 
 
 # function for QC related to ranges
@@ -1298,7 +1289,7 @@ warnings_qc <- function(params, data){
 
 
 
-####################### IF YOU ARE NOT USING BOX TO STORE DATA, PLEASE RUN THE CODE BELOW #######################
+####################### SET WORKING DIRECTORY, READ IN DATA DICTIONARY FOR CORE AND INCIDENT BREAST CANCER VARIABLES, READ IN QC CORRECTION AND WARNING RULES, RULES QC ON DATA, AND GENERATE QC REPORTS  #######################
 ###################### PLEASE READ THE COMMENTS TO SEE WHERE THE CODE WILL NEED YOUR INPUT ######################
 
 # set working directory
@@ -1309,32 +1300,34 @@ setwd("")
 # within the quotation marks
 path_to_output <- ""
 
-# Reading core data dictionary
-core.data.dict <- read_excel("./Data Dictionary/BCRPP_DataDictionary_for_QC_v1.xlsx",
-                           sheet = "CORE")
+# Save Data Diction in working directory and read in core variables as core.data.dict 
+# The data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/7b0573d6f36eaf198a468a41864511227c0896fb/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Data%20Dictionary/BCRPP_V1_DataDictionary.txt)
+core.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE ) %>% filter(Category == "Core")
 
 
-# Reading incident data dictionary
-incident.data.dict <- read_excel("./Data Dictionary/BCRPP_DataDictionary_for_QC_v1.xlsx",
-                                 sheet = "INCIDENT BREAST CANCER")
+# Read in incident data dictionary variables from data dictionary save in working directory
+# The data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/7b0573d6f36eaf198a468a41864511227c0896fb/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Data%20Dictionary/BCRPP_V1_DataDictionary.txt)
+incident.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE ) %>% filter(Category == "Incident Breast Cancer")
+
 
   
 # Reading core data
-# put the name of the data file inside the quotation marks
-#include the file extension as well
+# put the name of the core data file inside the quotation marks
+# include the file extension as well
+# Note, use the correction read function for your data read.csv for data saved as csv file or read.excel for data saved as excel file
 core.data <- read.csv("")
 #core.data <- read_excel("")
 
 
 # Reading incident cases data
-# put the name of the data file inside the quotation marks
+# put the name of the incident breast cancer data file inside the quotation marks
 # include the file extension as well
+# Note, use the correction read function for your data read.csv for data saved as csv file or read.excel for data saved as excel file
 incident.data <- read.csv(" ")
 #incident.data <- read_excel("")
 
 
-# lastfup is created in core data 
-# if lastfup is present in core data
+# check if lastfup is availble in the core data, if not copy lastfup from incident breast cancer file into core data
 if(!"lastfup" %in% names(core.data)){
   core.data <- rbind(core.data %>% filter(!subject_id %in% incident.data$subject_id) %>% mutate(lastfup = NA),
                      core.data %>% filter(subject_id %in% incident.data$subject_id) %>% 
@@ -1349,17 +1342,18 @@ if(!"lastfup" %in% names(core.data)){
 core.data <- change_case_match(data_dict = core.data.dict,
                                df = core.data)
 
-# reading Core correction rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Correction%20Rules.xlsx
+# Read in QC Core correction rules from working directory
+# QC core correction rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Correction%20Rules.xlsx
 bcrpp.core.correction.rules <- read_excel("./Core QC Rules/BCRPP Correction Rules.xlsx")
 
 # apply bcrpp correction rules to data 
 core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
                                 data = core.data)
 
-# reading Core warning rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Warning%20Rules.xlsx
+
+# Read in QC Core Warning rules from working directory
+# QC core warning rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Core%20QC%20Rules/BCRPP%20Warning%20Rules.xlsx
 bcrpp.core.warning.rules <- read_excel("./Core QC Rules/BCRPP Warning Rules.xlsx")
-
-
 
 # applying warning rules to data that already has changes made to core data
 core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
@@ -1371,15 +1365,17 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 # Populate "study_name" with name of Study and specify output path
 core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
 
-### INCIDENT CASES QC 
+
+
+### INCIDENT BREAST CACNER DATA  QC 
 
 # making sure core data variable name cases match cases in BCRPP data dictionary
 incident.data <- change_case_match(data_dict = incident.data.dict,
                                df = incident.data)
 
 
-#Reading Incident Breast Cancer correction Rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Correction%20Rules.xlsx
-
+# Read in QC Incident Breast Cancer correction Rules from working directory
+#Incident Breast Cancer correction Rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Correction%20Rules.xlsx
 bcrpp.incident.correction.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Correction Rules.xlsx")
 
 # apply bcrpp incident correction rules to data 
@@ -1387,12 +1383,10 @@ incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
                                 data = incident.data)
 
 
-#Reading Incident Breast Cancer warning Rules: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Warning%20Rules.xlsx
 
+# Read in QC Incident Breast Cancer warning Rules from working directory
+#Incident Breast Cancer warning Rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/34a81497282ed38de087702fe148e287cc43e487/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Warning%20Rules.xlsx
 bcrpp.incident.warning.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Warning Rules.xlsx")
-
-
-
 
 # applying warning rules to data that already has changes made to incident data
 incident.data.qc <- warnings_qc(params =bcrpp.incident.warning.rules,
@@ -1406,92 +1400,6 @@ incident.data.qc <- warnings_qc(params =bcrpp.incident.warning.rules,
 # Populate "study_name" with name of Study
 incident_summary_report(incident.dict = incident.data.dict,
                         qc_df = incident.data.qc, 
-                        path_output = path_to_output,
-                        study_name = "")
-
-
-#################################################################################################################
-################################################################################################
-########## PLEASE RUN THE CODE BELOW IF YOU ARE USING BOX TO STORE DATA #################################
-
-##############################################################
-# Reading core data dictionary
-core.data.dict <- box_read(869084480019) %>% filter(Category == "Core")
-
-
-# reading incident data dictionary
-incident.data.dict <- box_read(869084480019) %>% 
-  filter(Category == "Incident Breast Cancer")
-
-
-# Reading core data
-# put the name of the data Box file ID inside the quotation marks
-core.data <- box_read("")
-
-
-# Reading incident data
-# put the name of the data Box file ID inside the quotation marks
-incident.data <- box_read("")
-
-# lastfup is created in core data 
-# if lastfup is present in core data
-if(!"lastfup" %in% names(core.data)){
-  core.data <- core.data %>%
-    mutate(lastfup = ifelse(subject_id %in% incident.data$subject_id,
-                            incident.data$lastfup,
-                            NA))
-}
-
-
-
-# reading correction rules from Box
-bcrpp.core.correction.rules <- box_read(996117218706)
-
-# reading warning rules from Box
-bcrpp.core.warning.rules <- box_read(996103073482)
-
-
-# apply bcrpp correction rules to data 
-core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
-                                data = core.data)
-
-
-# applying warning rules to data that already has changes made to core data
-core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
-                            data = core.data.changes)
-
-# MAKING REPORT 
-
-# Populate "study_name" with name of Study
-core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
-
-
-#### INCIDENT BREAST CANCER CASES
-
-# making sure core data variable name cases match cases in BCRPP data dictionary
-incident.data <- change_case_match(data_dict = incident.data.dict,
-                                   df = incident.data)
-
-
-#Reading Incident Breast Cancer Rules from Box
-bcrpp.incident.correction.rules <- box_read(1502708742484)
-
-# apply bcrpp incident correction rules to data 
-incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
-                                    data = incident.data)
-
-#Reading Incident Breast Cancer Flag Rules from Box
-bcrpp.incident.warning.rules <- box_read(1502646289948)
-
-
-# applying warning rules to data that already has changes made to incident data
-incident.data.qc <- warnings_qc(params =bcrpp.incident.warning.rules,
-                                data = incident.data.changes)
-
-# MAKING REPORT 
-# Populate "study_name" with name of Study
-incident_summary_report(incident.dict = incident.data.dict,
-                        qc_df = incident.data.qc,
                         path_output = path_to_output,
                         study_name = "")
 
