@@ -1296,18 +1296,17 @@ warnings_qc <- function(params, data){
 # enter the entire path name for the folder that contains the data here within the quotation marks
 setwd("")
 
-# enter the path where the QC report should be outputted
-# within the quotation marks
+# enter the path where the QC report should be outputted within the quotation marks. Make sure path ends with a / (forward slash)
 path_to_output <- ""
 
 # Save Data Diction in working directory and read in core variables as core.data.dict 
 # The data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/7b0573d6f36eaf198a468a41864511227c0896fb/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Data%20Dictionary/BCRPP_V1_DataDictionary.txt)
-core.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE ) %>% filter(Category == "Core")
+core.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE, check.names = FALSE ) %>% filter(Category == "Core")
 
 
 # Read in incident data dictionary variables from data dictionary save in working directory
 # The data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/7b0573d6f36eaf198a468a41864511227c0896fb/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Data%20Dictionary/BCRPP_V1_DataDictionary.txt)
-incident.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE ) %>% filter(Category == "Incident Breast Cancer")
+incident.data.dict <- read.table("./Data Dictionary/BCRPP_V1_DataDictionary.txt", sep = "\t", header = TRUE, check.names = FALSE ) %>% filter(Category == "Incident Breast Cancer")
 
 
   
