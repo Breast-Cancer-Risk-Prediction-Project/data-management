@@ -1,6 +1,4 @@
-# BCRPP QC For Data Dictionary V2 #
-# The QC for Data Dictionary V2 is still under development finalizing the QC rules.
-# Any errors encountered when running this QC should be reported to Tom Ahearn at bcrpp@mail.nih.gov
+# BCRPP QC For Data Dictionary V2 #  !!!! CODE UNDER DEVELOPMENT
 
 ###########################################
 # INSTALL, IF NECESSARY, AND LOAD LIBRARIES  
@@ -36,8 +34,6 @@ library(openxlsx)
 ## RUN ALL LINES OF CODE WITHOUT MODIFICATION UPTO LINE 1292 - NO EDITS TO CODE ARE NEEDED
 ############
 
-
-
 ##################### MISC FUNCTIONS###################
 # These functions are tools used in the program to arrange data in appropriate formats/ arrange the output.
 ######################################################
@@ -45,7 +41,6 @@ library(openxlsx)
 # This function unlists values from strings. For example, if the valid values of a variable are 0 and 1, and this is written in the Excel rules as 0, 1,
 # R will read the entire cell as a string, i.e, "0,1".  This function will separate 0 and 1 from the string and add them to a list, which is necessary for 
 # the preliminary QC checks.
-
 
 get_range_values<- function( values_vector) {
   # values_vector  The vector containing the multiple values that are considered valid (accepts either numeric or text formats) for the variable
@@ -63,7 +58,6 @@ get_range_values<- function( values_vector) {
     return ( unlist(strsplit(values_vector, "," )))
   }
 }
-
 
 # Function to arrange the comment columns post QC filtering
 arrange.change.comments <- function(data){
@@ -1014,7 +1008,6 @@ crossrange.warnings <- function(data, params){
 } #function close bracket
 
 
-
 crossrange2.warnings<- function(data, params){
   
   print('===========> in crossrange2.warnings')
@@ -1136,7 +1129,6 @@ crossrange_not2.warnings <- function(data, params){
 }
 
 
-
 intdate.warnings <- function(data, params){
   print('=============> in intdate.warnings')
   
@@ -1230,13 +1222,10 @@ intdate.warnings <- function(data, params){
         return(data)
         
       }
-    }
-    
-    
+    }  
   }
   
 }
-
 
 
 # run one type of QC Type (Range, crossvalid,...)
@@ -1290,27 +1279,33 @@ warnings_qc <- function(params, data){
   
 }
 
-
-
-
 ####################### SET WORKING DIRECTORY, READ IN DATA DICTIONARY FOR CORE AND INCIDENT BREAST CANCER VARIABLES, READ IN QC CORRECTION AND WARNING RULES, RULES QC ON DATA, AND GENERATE QC REPORTS  #######################
 ###################### PLEASE READ THE COMMENTS TO SEE WHERE THE CODE WILL NEED YOUR INPUT ######################
+
+## DOWNLOAD FILES NEEDED TO RUN QC
+## Please download the BCRPP V2 data dictionary here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Data%20Dictionary/BCRPP_V2_DataDictionary.txt. Save the data dictionary in your working directory in a folder called "Data Dictionary".
+
+## Download the Core QC Change rules from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Core%20QC%20Rules/BCRPP%20Correction%20Rules%20V2.xlsx. Save in your working directory in a folder called "Core QC Rules".
+## Download the Core QC Warning rules from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Core%20QC%20Rules/BCRPP%20Warning%20Rules%20V2.xlsx Save in your working directory in a folder called "Core QC Rules".
+
+## Download the Incident breast cancer QC Change rules from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Correction%20Rules%20V2.xlsx. Save in your working directory in a folder called "Incident Cases Rules".
+## Download the Incident breast cancer QC Warning rules from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Warning%20Rules%20V2.xlsx. Save in your working directory in a folder called "Incident Cases Rules".
+
 
 # set working directory
 # enter the entire path name for the folder that contains the data here within the quotation marks
 setwd("")
 
+
 # enter the path where the QC report should be outputted
 # within the quotation marks
 path_to_output <- ""
 
-# Save Data Diction in working directory and read in core variables as core.data.dict 
-# The V2 data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Data%20Dictionary/BCRPP_V2_DataDictionary.txt
+# read in Core V2 data dictionary  
 core.data.dict <- read.table("./Data Dictionary/BCRPP_V2_DataDictionary.txt", sep = "\t", header = TRUE, check.names = FALSE ) %>% filter(Category == "Core")
 
 
-# Read in incident data dictionary variables from data dictionary save in working directory
-# The data dictionary for the QC program can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/7b0573d6f36eaf198a468a41864511227c0896fb/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1/Data%20Dictionary/BCRPP_V1_DataDictionary.txt)
+# read in Incident Breast Cancer  V2 data dictionary  
 incident.data.dict <- read.table("./Data Dictionary/BCRPP_V2_DataDictionary.txt", sep = "\t", header = TRUE, check.names = FALSE ) %>% filter(Category == "Incident Breast Cancer")
 
 
@@ -1335,14 +1330,14 @@ incident.data <- read.csv(" ")
 core.data <- change_case_match(data_dict = core.data.dict,
                                df = core.data)
 
-# The V2 Core correction rules can be downloaded from herer: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Core%20QC%20Rules/BCRPP%20Correction%20Rules%20V2.xlsx
+# The V2 Core correction rules can be downloaded from herer: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Core%20QC%20Rules/BCRPP%20Correction%20Rules%20V2.xlsx
 bcrpp.core.correction.rules <- read_excel("./Core QC Rules/BCRPP Correction Rules V2.xlsx")
 
 # apply bcrpp correction rules to data 
 core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
                                 data = core.data)
 
-# The V2 Core Warning rules can be downloaded from herer: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Core%20QC%20Rules/BCRPP%20Warning%20Rules%20V2.xlsx
+# The V2 Core Warning rules can be downloaded from herer: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Core%20QC%20Rules/BCRPP%20Warning%20Rules%20V2.xlsx
 bcrpp.core.warning.rules <- read_excel("./Core QC Rules/BCRPP Warning Rules V2")
 
 
@@ -1356,6 +1351,8 @@ core.data.qc <- warnings_qc(params =bcrpp.core.warning.rules,
 
 # Populate "study_name" with name of Study and specify output path
 core_summary_report(core.dict = core.data.dict, qc_df = core.data.qc, path_output = path_to_output, study_name = "")
+
+
 
 ### INCIDENT CASES QC 
 
@@ -1377,8 +1374,6 @@ if(!"Status" %in% names(incident.data)){
 incident.data <- incident.data[(incident.data$Status == 1), ]
 
 
-#Incident Breast Cancer correction Rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Correction%20Rules%20V2.xlsx
-
 bcrpp.incident.correction.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Correction Rules V2.xlsx")
 
 # apply bcrpp incident correction rules to data 
@@ -1386,7 +1381,6 @@ incident.data.changes <- changes_qc(rules = bcrpp.incident.correction.rules,
                                 data = incident.data)
 
 
-#Incident Breast Cancer warning Rules can be downloaded from here: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_1_2/Incident%20Cases%20Rules/BCRPP%20Incident%20Cases%20Warning%20Rules%20V2.xlsx
 
 bcrpp.incident.warning.rules <- read_excel("./Incident Cases Rules/BCRPP Incident Cases Warning Rules V2.xlsx")
 
