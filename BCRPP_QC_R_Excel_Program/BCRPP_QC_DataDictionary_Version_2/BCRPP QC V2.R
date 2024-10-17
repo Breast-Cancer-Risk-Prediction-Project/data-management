@@ -1,7 +1,6 @@
-# BCRPP QC For Data Dictionary V1.2 #
-# The QC for Data Dictionary V1.2 is still under development finalizing the QC rules.
+# BCRPP QC For Data Dictionary V2 #
+# The QC for Data Dictionary V2 is still under development finalizing the QC rules.
 # Any errors encountered when running this QC should be reported to Tom Ahearn at bcrpp@mail.nih.gov
-
 
 ###########################################
 # INSTALL, IF NECESSARY, AND LOAD LIBRARIES  
@@ -12,7 +11,7 @@ library(tidyverse)
 # install.packages("rlang")
 library(rlang)
 # install.packages('boxr')
-library(boxr)
+#library(boxr)
 # install.packages('glue') 
 library(glue)
 # install.packages('stringr')
@@ -31,16 +30,10 @@ library(ICD10gm)
 library(readxl)
 #install.packages("openxlsx")
 library(openxlsx)
-#install.packages("httr")
-library(httr)
-
-# initializing Box authentication process
-box_auth(client_id = "627lww8un9twnoa8f9rjvldf7kb56q1m", client_secret = "gSKdYKLd65aQpZGrq9x4QVUNnn5C8qqm")
 
 
 ############
-## PART 1 - LOAD QC FUNCTIONS
-## RUN ALL LINES OF CODE WITHOUT MODIFICATION, UPTO PART 2 (LINE XXXX 
+## RUN ALL LINES OF CODE WITHOUT MODIFICATION UPTO LINE 1292 - NO EDITS TO CODE ARE NEEDED
 ############
 
 
@@ -289,11 +282,6 @@ incident_summary_report <- function(incident.dict, qc_df, study_name, path_outpu
   writexl::write_xlsx(sheets_xl, path = paste0(path_output, study_name, " BCRPP Incident Cases QC Report.xlsx") )
                     
 }
-
-
-#################################################### PART 1 #############################################################
-#################################################### MODIFYING DATA TO PREVENT 777/888 inconsistency errors #############
-#########################################################################################################################
 
 
 ########################### QC Change Functions ###################
@@ -717,9 +705,9 @@ changes_qc <- function(rules,data){
 
 #box_write(df.changes,dir_id = 150319090948, file_name =  'Data with QC.csv', description = "This version of the data file has changes made to the data based on the QC program and comment next to rows where changes have been made.")
 
-#################################################### PART 2 ##############################################################
-#################################################### ADDING FLAGS FOR ROWS THAT REQUIRE MORE VERIFICATION ###################
-#############################################################################################################################
+########################################################## ##############################################################
+################################## ADDING FLAGS FOR ROWS THAT REQUIRE MORE VERIFICATION #################################
+##########################################################################################################################
 
 
 # function for QC related to ranges
@@ -1305,7 +1293,7 @@ warnings_qc <- function(params, data){
 
 
 
-####################### IF YOU ARE NOT USING BOX TO STORE DATA, PLEASE RUN THE CODE BELOW #######################
+####################### SET WORKING DIRECTORY, READ IN DATA DICTIONARY FOR CORE AND INCIDENT BREAST CANCER VARIABLES, READ IN QC CORRECTION AND WARNING RULES, RULES QC ON DATA, AND GENERATE QC REPORTS  #######################
 ###################### PLEASE READ THE COMMENTS TO SEE WHERE THE CODE WILL NEED YOUR INPUT ######################
 
 # set working directory
