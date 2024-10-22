@@ -1338,7 +1338,7 @@ core.data.changes <- changes_qc(rules = bcrpp.core.correction.rules,
                                 data = core.data)
 
 # The V2 Core Warning rules can be downloaded from herer: https://github.com/Breast-Cancer-Risk-Prediction-Project/data-management/blob/main/BCRPP_QC_R_Excel_Program/BCRPP_QC_DataDictionary_Version_2/Core%20QC%20Rules/BCRPP%20Warning%20Rules%20V2.xlsx
-bcrpp.core.warning.rules <- read_excel("./Core QC Rules/BCRPP Warning Rules V2")
+bcrpp.core.warning.rules <- read_excel("./Core QC Rules/BCRPP Warning Rules V2.xlsx")
 
 
 
